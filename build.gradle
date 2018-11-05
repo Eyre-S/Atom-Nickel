@@ -11,6 +11,23 @@ plugins {
     id 'java-library'
 }
 
+// Encoding as UTF-8
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+jar {
+    manifest {
+    	
+    	// Main class location
+        attributes 'Main-Class': 'club.mcmiki.eyre.nickel.AtomNickel'
+    }
+}
+
+// This is a task that to debug
+task runMain(dependsOn: 'classes', type: JavaExec) {
+    main = 'club.mcmiki.eyre.nickel.AtomNickel'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
