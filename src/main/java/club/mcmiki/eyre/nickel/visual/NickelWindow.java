@@ -19,24 +19,23 @@ import club.mcmiki.eyre.nickel.visual.label.Home;
 
 public class NickelWindow extends JFrame {
 	
-	private static final long serialVersionUID = -8960832167623074807L;
+	private static final long serialVersionUID = 1L;
 	
-	CardLayout cards = new CardLayout();
-	public JPanel c = new JPanel(cards);
-	
-	public Home home = null;
-	public Setting setting = null;
+	public Home home = new Home();
+	public Setting setting = new Setting();
 	
 	int xOld = 0;
 	int yOld = 0;
 	
-	public NickelWindow() {
-		this.setTitle(AtomNickel.res.getLang("window.name"));
+	public void init() {
+		home.init();
+		setting.init();
+		new Logger("> Initializating Window");
+		
 		
 		this.setLayout(new CardLayout());
 		this.setBounds(200, 100, 800, 480);
-		this.setBg();
-		this.setUndecorated(true);
+		this.setUndecorated(false);
 		this.addWindowListener(new WindowListener() {
 			
 			@Override
@@ -108,22 +107,22 @@ public class NickelWindow extends JFrame {
 			}
 		});
 		
-		home = new Home();
-		setting = new Setting();
-		
-		this.setVisible(true);
+//		this.add(setting);
+		this.add(home);
 	}
 	
-	public void setPanel(String id) {
-		cards.show(c, id);
+	public void loadLanguage() {
+		this.setTitle(AtomNickel.res.getLang("window.name"));
+//		this.setBg();
+		home.loadLanguage();
 	}
-
-	public void setBg(){ 
-		((JPanel)this.getContentPane()).setOpaque(false); 
-		ImageIcon img = new ImageIcon
-				(AtomNickel.res.get("nickel/picture/test-bg.png")); 
-		JLabel background = new JLabel(img);
-		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE)); 
-		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight()); 
-	}
+//
+//	public void setBg(){ 
+//		((JPanel)this.getContentPane()).setOpaque(false); 
+//		ImageIcon img = new ImageIcon
+//				(AtomNickel.res.get("nickel/picture/test-bg.png")); 
+//		JLabel background = new JLabel(img);
+//		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE)); 
+//		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight()); 
+//	}
 }

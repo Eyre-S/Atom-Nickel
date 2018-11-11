@@ -8,9 +8,9 @@ import club.mcmiki.eyre.nickel.visual.NickelWindow;
 
 public class AtomNickel {
 	
-	public static NickelWindow window = null;
-	public static Preference preference = null;
-	public static Resource res = null;
+	public static NickelWindow window = new NickelWindow();
+	public static Preference preference = new Preference();
+	public static Resource res = new Resource();
 	
 	public static final String NAME = "Atom Nickel";
 	public static final String ID = "nickel";

@@ -14,16 +14,16 @@ import club.mcmiki.eyre.nickel.system.Logger;
 
 public class Home extends JPanel {
 
-	private static final long serialVersionUID = -4568541638376041622L;
+	private static final long serialVersionUID = 1L;
 
 	JPanel menu = new JPanel(null);
 	
 	JButton exit = new JButton();
 	JButton setting = new JButton();
 	JPanel push = new JPanel(null);
-		JLabel pushIndex = new JLabel(AtomNickel.res.getLang("panelPush.index.name"));
+		JLabel pushIndex = new JLabel();
 	
-	public Home() {
+	public void init() {
 		
 		this.setBounds(0, 0, 800, 480);
 		this.setBackground(new Color(0xff, 0xff, 0xff, 0));
@@ -54,7 +54,8 @@ public class Home extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Logger("user:open settiing");
-				AtomNickel.window.setPanel("setting");
+				AtomNickel.window.home.setVisible(false);
+				AtomNickel.window.setting.setVisible(true);
 			}
 		});
 		
@@ -63,6 +64,11 @@ public class Home extends JPanel {
 		push.add(pushIndex);
 		this.add(push);
 		this.add(menu);
+		this.setVisible(true);
+	}
+	
+	public void loadLanguage() {
+		pushIndex.setText(AtomNickel.res.getLang("panelPush.index.name"));
 	}
 	
 }
